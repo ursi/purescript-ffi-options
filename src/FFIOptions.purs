@@ -8,7 +8,7 @@ import Prim.Row as R
 import Prim.RowList (kind RowList, Nil)
 import Prim.RowList as RL
 
-class FFIOptions (requried :: # Type) (optional :: # Type) (row :: # Type)
+class FFIOptions (required :: # Type) (optional :: # Type) (row :: # Type)
 
 instance ffiOptions ::
   ( R.Union required r row
