@@ -4,15 +4,16 @@ module FFIOptions
   , class Helper
   ) where
 
+import Prim.Row (class Lacks, class Union)
 import Prim.Row as R
-import Prim.RowList (kind RowList, Nil)
+import Prim.RowList (kind RowList, class RowToList, Nil)
 import Prim.RowList as RL
 
 class FFIOptions (required :: # Type) (optional :: # Type) r
 
 instance ffiOptions ::
-  ( R.Union required sub r
-  , RL.RowToList sub list
+  ( Union required sub r
+  , RowToList sub list
   , Helper list optional sub
   ) =>
   FFIOptions required optional { | r }
@@ -24,8 +25,8 @@ instance helperNil :: Helper Nil options ()
 instance helperCons ::
   ( R.Cons label type_ o options
   , R.Cons label type_ s sub
-  , R.Lacks label o
-  , R.Lacks label s
+  , Lacks label o
+  , Lacks label s
   , Helper list o s
   ) =>
   Helper (RL.Cons label type_ list) options sub
