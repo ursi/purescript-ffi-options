@@ -17,15 +17,15 @@ instance ffiOptions ::
   ) =>
   FFIOptions required optional { | r }
 
-class Helper (list :: RowList) (optional :: # Type) (row :: # Type) | list -> optional row
+class Helper (list :: RowList) (optional :: # Type) (sub :: # Type) | list -> optional sub
 
 instance helperNil :: Helper Nil options ()
 
 instance helperCons ::
   ( R.Cons label type_ o options
-  , R.Cons label type_ r row
+  , R.Cons label type_ s sub
   , R.Lacks label o
-  , R.Lacks label r
-  , Helper list o r
+  , R.Lacks label s
+  , Helper list o s
   ) =>
-  Helper (RL.Cons label type_ list) options row
+  Helper (RL.Cons label type_ list) options sub
