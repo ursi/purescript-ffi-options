@@ -8,14 +8,14 @@ import Prim.Row as R
 import Prim.RowList (kind RowList, Nil)
 import Prim.RowList as RL
 
-class FFIOptions (required :: # Type) (optional :: # Type) (row :: # Type)
+class FFIOptions (required :: # Type) (optional :: # Type) r
 
 instance ffiOptions ::
-  ( R.Union required r row
-  , RL.RowToList r list
-  , Helper list optional r
+  ( R.Union required sub r
+  , RL.RowToList sub list
+  , Helper list optional sub
   ) =>
-  FFIOptions required optional row
+  FFIOptions required optional { | r }
 
 class Helper (list :: RowList) (optional :: # Type) (row :: # Type) | list -> optional row
 

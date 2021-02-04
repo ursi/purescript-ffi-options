@@ -9,7 +9,7 @@ type Required
 type Optional
   = ( c :: Int, d :: String )
 
-a :: ∀ r. FFIOptions Required Optional r => Record r -> Int
+a :: ∀ r. FFIOptions Required Optional r => r -> Int
 a _ = 0
 
 a1 = a { a: 0, b: "" }
@@ -20,7 +20,7 @@ a3 = a { a: 0, b: "", d: "" }
 
 a4 = a { a: 0, b: "", c: 0, d: "" }
 
-b :: ∀ r. FFIOptions () Optional r => Record r -> Int
+b :: ∀ r. FFIOptions () Optional r => r -> Int
 b _ = 0
 
 b1 = b {}
@@ -31,7 +31,7 @@ b3 = b { d: "" }
 
 b4 = b { c: 0, d: "" }
 
-c :: ∀ r. FFIOptions Required () r => Record r -> Int
+c :: ∀ r. FFIOptions Required () r => r -> Int
 c _ = 0
 
 c1 = c { a: 0, b: "" }
