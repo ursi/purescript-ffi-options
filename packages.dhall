@@ -1,1 +1,1 @@
-https://github.com/purescript/package-sets/releases/download/psc-0.13.8-20201021/packages.dhall sha256:55ebdbda1bd6ede4d5307fbc1ef19988c80271b4225d833c8d6fb9b6fb1aa6d8
+https://github.com/purescript/package-sets/releases/download/psc-0.14.0-20210405/packages.dhall sha256:6686e4f0e4a95bdea867ecb65123d838850ab8006033f1161cd5f1f26161dccd

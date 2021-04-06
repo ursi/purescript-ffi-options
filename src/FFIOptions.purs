@@ -6,10 +6,11 @@ module FFIOptions
 
 import Prim.Row (class Lacks, class Union)
 import Prim.Row as R
-import Prim.RowList (kind RowList, class RowToList, Nil)
+import Prim.RowList (RowList, class RowToList, Nil)
 import Prim.RowList as RL
 
-class FFIOptions (required :: # Type) (optional :: # Type) r
+class FFIOptions :: Row Type -> Row Type -> Type -> Constraint
+class FFIOptions required optional r
 
 instance ffiOptions ::
   ( Union required sub r
@@ -18,7 +19,8 @@ instance ffiOptions ::
   ) =>
   FFIOptions required optional { | r }
 
-class Helper (list :: RowList) (optional :: # Type) (sub :: # Type) | list -> optional sub
+class Helper :: RowList Type -> Row Type -> Row Type -> Constraint
+class Helper list optional sub | list -> optional sub
 
 instance helperNil :: Helper Nil options ()
 
